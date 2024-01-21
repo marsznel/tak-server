@@ -33,7 +33,7 @@ The size blew up after `4.6` due to `900GB` of DTED which was added to WebTAK.
 | Release Filename                       | Bytes       | MD5 Checksum                       | SHA1 Checksum                              |
 | -------------------------------------- | ----------- | ---------------------------------- | ------------------------------------------ |
 | `takserver-docker-4.8-RELEASE-31.zip`  | `772606000` | `c07f01d74960287bfc7dc08ecd6cbc3a` | `387ea4f593763d3adcfda5128a89dda4fd82e937` |
-| `takserver-docker-4.10-RELEASE-12.zip` | `689840222` | `c36100c29af38e166987ded89f77a3d4` | `1d4e709de9dbf5c9cf082d892e8a8888fcd848b5` |
+| `takserver-docker-4.10-RELEASE-12.zip` | `553780699` | `c36100c29af38e166987ded89f77a3d4` | `1d4e709de9dbf5c9cf082d892e8a8888fcd848b5` |
 | `takserver-docker-5.0-RELEASE-29.zip`  | `689840222` | `1ff2c99651ff4ab90a6edc79663b82d9` | `e2f0d957ac74577fb5ac402338bbdf3e1a16f6e2` |
 
 ## Requirements
