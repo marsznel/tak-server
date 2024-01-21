@@ -32,18 +32,15 @@ The size blew up after `4.6` due to `900GB` of DTED which was added to WebTAK.
 
 | Release Filename                      | Bytes       | MD5 Checksum                       | SHA1 Checksum                              |
 | ------------------------------------- | ----------- | ---------------------------------- | ------------------------------------------ |
-| `takserver-docker-4.6-RELEASE-26.zip` | `462381384` | `dc63cb315f950025707dbccf05bdf183` | `7ca58221b8d35d40df906144c5834e6d9fa85b47` |
-| `takserver-docker-4.7-RELEASE-4.zip`  | `759385093` | `5b011b74dd5f598fa21ce8d737e8b3e6` | `b688359659a05204202c21458132a64ec1ba0184` |
-| `takserver-docker-4.7-RELEASE-18.zip` | `759410768` | `44b6fa8d7795b56feda08ea7ab793a3e` | `cd56406d3539030ab9b9b3fbae08b56b352b9b53` |
-| `takserver-docker-4.7-RELEASE-20.zip` | `759389907` | `1cb0208c62d4551f1c3185d00a5fd8bf` | `f427ae3e860fddb8907047f157ada5764334c48d` |
 | `takserver-docker-4.8-RELEASE-31.zip` | `772606000` | `c07f01d74960287bfc7dc08ecd6cbc3a` | `387ea4f593763d3adcfda5128a89dda4fd82e937` |
+| `takserver-docker-5.0-RELEASE-29.zip` | `689840222` | `1ff2c99651ff4ab90a6edc79663b82d9` | `e2f0d957ac74577fb5ac402338bbdf3e1a16f6e2` |
 
 ## Requirements
 
 - Debian-based operating system, such as Debian or Ubuntu
 - Docker with `compose` (https://docs.docker.com/engine/install/ubuntu/ or https://docs.docker.com/engine/install/debian/)
 - A TAK server release
-- 2GB memory
+- 8GB memory
 - Network connection
 - `unzip` and `netstat` utilities
 
@@ -53,16 +50,82 @@ Please use the below link to see a short video on a complete setup of TAK Server
 
 [TAK Server install (Docker)](https://www.youtube.com/watch?v=h4PA9NN-cDk)
 
-## Prerequisites
+## Steps for DigitalOcean droplet
 
-Fetch the dependencies, then clone the git repository and `cd` into the directory
-
+# Add Docker's official GPG key:
 ```bash
-sudo apt update
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+# Add the repository to Apt sources:
+```bash
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+#Install the Docker packages:
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+# Verify that the Docker Engine installation is successful by running the hello-world image:
+```bash
+sudo docker run hello-world
+```
+
+# Install Git:
+```bash
+sudo apt install git-all
+```
+
+# Update Debian Packages Before OpenJDK 17 Installation:
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+# Restart the DigitalOcean server and reconnect after reboot
+```bash
+shutdown -r now
+```
+
+# Search for OpenJDK 17 Packages:
+```bash
+apt-cache search openjdk | grep openjdk-17
+```
+
+# Install the OpenJDK 17 JRE and JDK on Debian:
+```bash
+sudo apt install openjdk-17-jre
+sudo apt install openjdk-17-jdk
+```
+
+# Confirm the Installation of OpenJDK 17:
+```bash
+java --version
+```
+
+# Pull GitHub repo:
+```bash
 sudo apt install net-tools unzip zip
 git clone https://github.com/marsznel/tak-server.git
 cd tak-server
 ```
+
+# Paste TAKSERVER-DOCKER-X.X-RELEASE ZIP file to the tak-server directory.
+
+# Run TAK server instalation:
+```bash
+chmod +x scripts/setup.sh
+./scripts/setup.sh
+```
+# Download certs from /root/tak-server/tak/certs/files
 
 ### Docker Security
 
