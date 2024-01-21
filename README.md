@@ -50,9 +50,9 @@ Please use the below link to see a short video on a complete setup of TAK Server
 
 [TAK Server install (Docker)](https://www.youtube.com/watch?v=h4PA9NN-cDk)
 
-## Steps for DigitalOcean droplet
+# Steps for DigitalOcean droplet
 
-# Add Docker's official GPG key:
+## Add Docker's official GPG key:
 ```bash
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
@@ -61,7 +61,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 ```
 
-# Add the repository to Apt sources:
+## Add the repository to Apt sources:
 ```bash
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
@@ -70,62 +70,62 @@ echo \
 sudo apt-get update
 ```
 
-#Install the Docker packages:
+## Install the Docker packages:
 ```bash
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-# Verify that the Docker Engine installation is successful by running the hello-world image:
+## Verify that the Docker Engine installation is successful by running the hello-world image:
 ```bash
 sudo docker run hello-world
 ```
 
-# Install Git:
+## Install Git:
 ```bash
 sudo apt install git-all
 ```
 
-# Update Debian Packages Before OpenJDK 17 Installation:
+## Update Debian Packages Before OpenJDK 17 Installation:
 ```bash
 sudo apt update && sudo apt upgrade
 ```
 
-# Restart the DigitalOcean server and reconnect after reboot
+## Restart the DigitalOcean server and reconnect after reboot
 ```bash
 shutdown -r now
 ```
 
-# Search for OpenJDK 17 Packages:
+## Search for OpenJDK 17 Packages:
 ```bash
 apt-cache search openjdk | grep openjdk-17
 ```
 
-# Install the OpenJDK 17 JRE and JDK on Debian:
+## Install the OpenJDK 17 JRE and JDK on Debian:
 ```bash
 sudo apt install openjdk-17-jre
 sudo apt install openjdk-17-jdk
 ```
 
-# Confirm the Installation of OpenJDK 17:
+## Confirm the Installation of OpenJDK 17:
 ```bash
 java --version
 ```
 
-# Pull GitHub repo:
+## Pull GitHub repo:
 ```bash
 sudo apt install net-tools unzip zip
 git clone https://github.com/marsznel/tak-server.git
 cd tak-server
 ```
 
-# Paste TAKSERVER-DOCKER-X.X-RELEASE ZIP file to the tak-server directory.
+## Paste TAKSERVER-DOCKER-X.X-RELEASE ZIP file to the tak-server directory.
 
-# Run TAK server instalation:
+## Run TAK server instalation:
 ```bash
 chmod +x scripts/setup.sh
 ./scripts/setup.sh
 ```
-# Download certs from /root/tak-server/tak/certs/files
+## Download certs from /root/tak-server/tak/certs/files
 
 ### Docker Security
 
@@ -140,25 +140,6 @@ To test if you are able to run `docker` commands without `sudo` you can test wit
 ```bash
 docker run hello-world
 ```
-
-### AMD64 & ARM64 (Pi4) setup 
-
-The script will auto-detect your architecture and use the ARM Docker file if the architecture is determined to be `arm64`.
-
-## Installation
-
-You should copy your downloaded **TAKSERVER-DOCKER-X.X-RELEASE** ZIP file to the `tak-server` directory.
-
-Assuming that your current working directory is the `tak-server` as cloned previously, you can then proceed to run the [setup.sh script](./scripts/setup.sh).
-
-```bash
-chmod +x scripts/setup.sh
-./scripts/setup.sh
-```
-
-The `setup.sh` script will populate configuration files, start up TAK server with a PostgreSQL database via Docker compose and generate the required certificates. There will be prompts and some input required from the user such as certificate names. At the end of the setup the user will be given random passwords and a link to access the web interface where further settings can be applied.
-
-For more information on using TAK server refer to [the documentation on the TAK Product Center GitHub](https://github.com/TAK-Product-Center/Server/tree/main/src/docs).
 
 ### Network Ports
 
